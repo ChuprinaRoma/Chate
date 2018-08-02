@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link type="text/css"  rel="stylesheet"  href="~/css/default.css">
+    <link type="text/css"  rel="stylesheet"  href="~/css/R_AStyle.css">
+    <script src="~/js/signalr.min.js"></script>
+</head>
+<body>
+    <div style="height: 60px;color:#ffffff;background-color: #3357ac;">
+        <h2 style="top:2%;left:50%;position:absolute;"><a>Чат</a></h2>
+        <h2 style="top:2%;left:5%;position:absolute;"><a>@ViewData["page"]</a></h2>
+    </div>
+    <div style="height:100%;">
+        @RenderBody()
+    </div>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

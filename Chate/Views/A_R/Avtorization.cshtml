@@ -1,0 +1,22 @@
+﻿
+<div class="form">
+    <form method="post" action="~/A_R/Avtorization">
+        <div class="divInp">
+            <h2>Логин</h2><br />
+            <input class="textInp" type="text" name="login" placeholder="Ведите свою почту">
+        </div>
+        <p />
+        <div class="divInp">
+            <h2>Пароль</h2><br />
+            <input class="textInp" type="password" name="password" placeholder="Введите свой пароль">
+        </div>
+        <div class="divInp">
+            <p hidden=@ViewData["isHidden"]>Пароль или Логин не был правильным</p>
+        </div>
+        <p />
+        <div class="divInp">
+            <input class="btnInp" type="button" value="Регистрация" onclick="window.location.href='@Url.Action("Registration", "A_R")';" />
+            <input class="btnInp" type="submit" value="Войти" />
+        </div>
+    </form>
+</div >

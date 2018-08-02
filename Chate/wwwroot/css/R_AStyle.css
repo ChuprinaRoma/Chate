@@ -1,0 +1,23 @@
+﻿*.form {
+    position: absolute;
+    top: 35%;
+    left: 35%;
+    padding: 20px;
+}
+
+.divInp {
+    margin: 20px;
+}
+
+.textInp {
+    height: 40px;
+    width: 300px;
+    font-size: 130%;
+}
+
+.btnInp {
+    font-size: 130%;
+    height: 40px;
+    width: 150px;
+}
+

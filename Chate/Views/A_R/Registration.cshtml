@@ -1,0 +1,39 @@
+﻿<div class="form">
+    <form id="frm" method="post" action="Registration">
+        <div class="divInp">
+            <h2>Логин</h2><br />
+            <input class="textInp" type="text" name="login" placeholder="Ведите свою почту">
+        </div>
+        <p />
+        <div class="divInp">
+            <h2>Пароль</h2><br />
+            <input class="textInp" type="password" id="pas" name="password" placeholder="Введите свой пароль">
+        </div>
+        <p />
+        <div class="divInp">
+            <h2>Повтор пароля</h2><br />
+            <input class="textInp" type="password"id="confirmPas" placeholder="Повторите пароль">
+        </div>
+        <div class="divInp">
+            <p hidden=@ViewData["isHidden"]>Такой логин уже существует</p>
+        </div>
+        <p />
+        <div class="divInp">
+            <input class="btnInp" type="button" value="Регистрация" onclick="EqualsPassword()" />
+            <input class="btnInp" type="button" value="Есть акаунт" onclick="window.location.href='@Url.Action("Avtorization", "A_R")';" />
+        </div>
+        
+    </form>
+    <script>
+        function EqualsPassword() {
+            let pass = document.getElementById('pas').value;
+            let confirmPass = document.getElementById('confirmPas').value;
+            if (confirmPass == pass) {
+                document.getElementById('frm').submit();
+            }
+            else {
+                alert("Пароли не совпали");
+            }
+        }
+    </script>
+</div>
