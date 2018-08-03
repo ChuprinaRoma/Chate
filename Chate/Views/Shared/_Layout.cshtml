@@ -9,8 +9,12 @@
     <div style="height: 60px;color:#ffffff;background-color: #3357ac;">
         <h2 style="top:2%;left:50%;position:absolute;"><a>Чат</a></h2>
         <h2 style="top:2%;left:5%;position:absolute;"><a>@ViewData["page"]</a></h2>
+        <button  hidden=@ViewData["hidden"] 
+                style="top:2%;right:5%;position:absolute;">
+        <a href="~/A_R/Avtorization">Выйти</a>
+        </button>
     </div>
-    <div style="height:100%;">
+    <div style="height:92%;">
         @RenderBody()
     </div>
 

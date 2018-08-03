@@ -1,14 +1,119 @@
 ﻿<link href="~/css/ChateStyle.css" rel="stylesheet" />
-<div class="content">
-    <div>
-        <nav>
-        </nav>
-        <div>
-            <div>
+<div class="body">
+    <div class="bodyChate">
+        <div class="chate">
+            <div class="headChate">
+                <h3>Чат</h3>
             </div>
-            <div>
+            <div class="content contentChate">
+                @for (int i = 0; i < ViewBag.Chat.Count; i++)
+                {
+                    if (ViewData["login"].ToString() == ViewBag.Chat[i].Login.ToString())
+                    {
+                        <div class="myMsg msg">
+                            <p><h3>@ViewBag.Chat[i].Login</h3></p>
+                            <span>@ViewBag.Chat[i].Mesage</span>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="strangersMsg msg">
+                            <p><h3>@ViewBag.Chat[i].Login</h3></p>
+                            <span>@ViewBag.Chat[i].Mesage</span>
+                        </div>
+                    }
+                }
             </div>
         </div>
+        <div class="interlocutors">
+            <div class="headChate">
+                <h3>Собиседники</h3>
+            </div>
+            <div class="content contentI">
+                @for (  int i = 0; i < ViewBag.user.Count; i++)
+                {
+                    <p class="interlocutorsTegP" id="@ViewBag.user[i].Login">@ViewBag.user[i].Login</p>
+                }
+            </div>
+        </div>
+        <div class="sendDiv">
+            <textarea class="inpSend" placeholder="Ведите текст" ></textarea>
+            <button onclick="Send()" class="btnSend">Отправить</button>
+        </div>
     </div>
-    <script src="~/js/SignalRConector.js"></script>
+
+
+    <script>
+        
+        var login = "@ViewData["login"]";
+       
+        let hubUrl = 'http://localhost:29300/chat';
+        const hubConnection = new signalR.HubConnectionBuilder()
+                .withUrl(hubUrl)
+                .configureLogging(signalR.LogLevel.Information)
+                .build();
+        
+
+
+
+        function DisConnect() {
+            hubConnection.invoke('DisConnect', login);
+        }
+
+
+        function Send() {
+            let mesage = document.getElementsByClassName("inpSend")[0].value;
+            hubConnection.invoke('Send', login, mesage);
+            document.getElementsByClassName("inpSend")[0].value = "";
+        }
+
+        hubConnection.on('Send', function (login1, mesage) {
+            let newPName   = document.createElement("p");
+            let h3         = document.createElement("h3");
+            let newDiv1    = document.createElement("div");
+            let newSpanMsg = document.createElement("span");
+
+            if (login1 == login) {
+                newDiv1.className = "myMsg msg";
+            }
+            else {
+                newDiv1.className = "strangersMsg msg";
+            }
+            
+            h3.appendChild(document.createTextNode(login1));
+            newPName.appendChild(h3);
+            
+            newSpanMsg.appendChild(document.createTextNode(mesage));
+            newDiv1.appendChild(newPName);
+            newDiv1.appendChild(newSpanMsg);
+            document.getElementsByClassName("content contentChate")[0]
+                .appendChild(newDiv1);
+
+        });
+
+        hubConnection.on('Connect', function (login1) {
+            let p = document.createElement("p");
+
+            p.id = login1;
+            p.className = "interlocutorsTegP";
+            p.appendChild(document.createTextNode(login1));
+            document.getElementsByClassName('interlocutors')[0]
+                .getElementsByClassName('content')[0]
+                .appendChild(p);
+        });
+
+        hubConnection.on('DisConnect', function (login1) {
+            if (document.getElementsByClassName("content contentI")[0].id != login1) {
+                document.getElementsByClassName("content contentI")[0]
+                    .removeChild(document.getElementById(login1));
+            }
+        });
+
+        hubConnection.start();
+        setTimeout(function () {
+            hubConnection.invoke('Connect', login);
+        }, 1500);
+
+        window.onbeforeunload = DisConnect;
+    </script>
 </div>

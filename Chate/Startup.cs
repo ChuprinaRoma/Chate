@@ -25,7 +25,7 @@ namespace Chate
 
             app.UseSignalR(routes =>
             {
-                routes.MapHub<ChateHub>("/A_R");
+                routes.MapHub<ChateHub>("/chat");
             });
 
             app.UseMvc(routes =>

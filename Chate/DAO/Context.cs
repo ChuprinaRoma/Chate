@@ -7,7 +7,7 @@ namespace Chate.DAO
 {
     public class Context : DbContext
     {
-        public DbSet<User> User { get; set; }
+        public DbSet<User> User         { get; set; }
         public DbSet<Model.Chate> Chate { get; set; }
 
         public Context()

@@ -1,4 +1,82 @@
-﻿.content {
-    background-color: #dbdfe6;
-    height: 100%;
+﻿
+.body {
+    background-color: #d9dde5;
+    height          : 100%;
+    display         : flex;
+    justify-content : center;
+}
+.bodyChate {
+    box-shadow      : 0px 0px 30px 0px;
+    bottom          : 0px;
+    height          : 75%;
+    background-color: #b5c7ef;
+    width           : 75%;
+    justify-content : center;
+    position        :absolute;
+    bottom          :80px;
+    
+}
+.headChate {
+    height          : 40px;
+    background-color: #3066e6;
+    display         :flex;
+    align-items     :center;
+    justify-content :center;
+}
+
+.chate {
+    float : left;
+    width : 70%;
+    height: 85%;
+    
+}
+.interlocutors {
+    float:  right;
+    width : 29%;
+    height: 104%;
+}
+.content {
+    height          : 88%;
+    background-color: #c4d0ed;
+    border          : 5px inset #d9dde5;
+    overflow        : auto;
+}
+
+.contentI {
+    display   :block;
+    text-align:center;
+}
+
+.sendDiv {
+    height:100%;
+    margin: 5px;
+}
+
+.inpSend {
+    width : 60%;
+    height: 80px;
+}
+
+.btnSend {
+    width: 10%;
+    height:80px;
+    position:absolute;
+}
+
+.msg {
+    height       : auto;
+    max-width    : 70%;
+    border-radius: 20px;
+    margin       : 10px;
+    padding      : 10px;
+    word-wrap    : break-word;
+    width        : 50%;
+}
+.strangersMsg {
+    float           : left;
+    background-color: rgba(254, 5, 5, 0.52)
+}
+.myMsg {
+    float           : right;
+    background-color: rgba(8, 41, 151, 0.52)
 }
