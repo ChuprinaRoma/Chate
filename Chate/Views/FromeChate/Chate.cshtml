@@ -88,6 +88,7 @@
             newDiv1.appendChild(newSpanMsg);
             document.getElementsByClassName("content contentChate")[0]
                 .appendChild(newDiv1);
+            document.getElementsByClassName('content contentChate')[0].scrollTop = 9999;
 
         });
 
@@ -113,6 +114,8 @@
         setTimeout(function () {
             hubConnection.invoke('Connect', login);
         }, 1500);
+
+        document.getElementsByClassName('content contentChate')[0].scrollTop = 9999;
 
         window.onbeforeunload = DisConnect;
     </script>
